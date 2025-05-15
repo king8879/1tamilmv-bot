@@ -25,6 +25,7 @@ load_dotenv()
 TOKEN = os.getenv('TOKEN')
 CHANNEL_ID = os.getenv('CHANNEL_ID')
 CHANNEL_USERNAME = os.getenv('CHANNEL_USERNAME')
+WEBHOOK_URL = os.getenv('WEBHOOK_URL')
 
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
@@ -281,5 +282,5 @@ def handle_all_feeds():
 if __name__ == "__main__":
     threading.Thread(target=post_to_channel, daemon=True).start()
     bot.remove_webhook()
-    bot.set_webhook(url=f'https://magnetbots-p04pgbe6.b4a.run/{TOKEN}')
+    bot.set_webhook(url=f'{WEBHOOK_URL}/{TOKEN}')
     app.run(host='0.0.0.0', port=3000)
