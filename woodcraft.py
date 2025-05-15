@@ -129,7 +129,7 @@ def post_to_channel():
                         # ==================================
 
                         print(f"Posted: {title}")
-                        time.sleep(5)
+                        time.sleep(10)
                     except Exception as e:
                         print(f"Error posting message: {e}")
                 posted_titles.add(title)
