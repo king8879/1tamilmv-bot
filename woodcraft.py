@@ -26,6 +26,7 @@ TOKEN = os.getenv('TOKEN')
 CHANNEL_ID = os.getenv('CHANNEL_ID')
 CHANNEL_USERNAME = os.getenv('CHANNEL_USERNAME')
 WEBHOOK_URL = os.getenv('WEBHOOK_URL')
+TAMILMV_URL = os.getenv('TAMILMV_URL', 'https://www.1tamilmv.fi')
 
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
@@ -34,7 +35,7 @@ scraper = cloudscraper.create_scraper()
 posted_titles = set()
 
 def tamilmv():
-    mainUrl = 'https://www.1tamilmv.fi'
+    mainUrl = TAMILMV_URL
     movie_list = []
     real_dict = {}
 
@@ -54,7 +55,7 @@ def tamilmv():
             title = title_tag.text.strip()
             link = title_tag['href']
             if not link.startswith("http"):
-                link = 'https://www.1tamilmv.fi' + link
+                link = TAMILMV_URL + link
             movie_list.append(title)
             details = get_movie_details(link)
             if details:
