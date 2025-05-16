@@ -36,8 +36,6 @@ jobs:
           push: true
           tags: |
             woodcraftbot/1tamilmv-bot:latest
-            woodcraftbot/1tamilmv-bot:${{ github.sha }}
-            woodcraftbot/1tamilmv-bot:v1.0
-            ${{ github.event.inputs.manual_version && format('woodcraftbot/1tamilmv-bot:{0}', github.event.inputs.manual_version) || '' }}
+            woodcraftbot/1tamilmv-bot:v1.0.1
           cache-from: type=gha
           cache-to: type=gha,mode=max
