@@ -30,7 +30,27 @@ TAMILMV_URL = os.getenv('TAMILMV_URL', 'https://www.1tamilmv.fi')
 
 bot = telebot.TeleBot(TOKEN)
 app = Flask(__name__)
-scraper = cloudscraper.create_scraper()
+
+scraper = cloudscraper.create_scraper(
+    browser={
+        'browser': 'chrome',
+        'platform': 'windows',
+        'mobile': False
+    }
+)
+
+scraper.headers.update({
+    'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/122.0.0.0 Safari/537.36',
+    'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+    'Accept-Encoding': 'gzip, deflate, br',
+    'Accept-Language': 'en-US,en;q=0.9',
+    'Connection': 'keep-alive',
+    'Referer': 'https://www.google.com/',
+    'Upgrade-Insecure-Requests': '1',
+    'DNT': '1',  # Do Not Track
+    'Cache-Control': 'no-cache',
+    'Pragma': 'no-cache'
+})
 
 posted_titles = set()
 
@@ -82,9 +102,8 @@ def get_movie_details(url):
             torrent = torrent_links[i] if i < len(torrent_links) else '#'
             detail = (
                 f"<blockquote><b>📂 Movie Title:</b> {movie_title}</blockquote>\n"
-                f"<b>🧲 Magnet Link</b><pre>{magnet}</pre>\n\n"
-                f"🗒️ <a href='{torrent}'>Torrent File Download 🖇</a>\n\n"
-                f"❖ 𝐖𝐃 𝐙𝐎𝐍𝐄 ❖ ™ @Opleech_WD"
+                f"<b>🧲 Magnet Link</b><pre>{magnet}</pre>\n"
+                f"🗒️ <a href='{torrent}'>Torrent File</a> ❖ 𝐖𝐃 𝐙𝐎𝐍𝐄 ❖ ™"
             )
             result.append(detail)
 
@@ -271,7 +290,7 @@ def handle_all_feeds():
                     chat_id=CHANNEL_ID,
                     text=detail,
                     parse_mode='HTML',
-                    disable_web_page_preview=True
+                    disable_web_page_preview=True 
                 )
                 posted_titles.add(title)
                 posted += 1
