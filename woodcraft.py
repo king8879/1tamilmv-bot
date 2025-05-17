@@ -289,8 +289,7 @@ def handle_all_feeds():
                 bot.send_message(
                     chat_id=CHANNEL_ID,
                     text=detail,
-                    parse_mode='HTML',
-                    disable_web_page_preview=True 
+                    parse_mode='HTML'
                 )
                 posted_titles.add(title)
                 posted += 1
