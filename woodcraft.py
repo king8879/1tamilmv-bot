@@ -22,10 +22,10 @@ def callback_handler(call):
 # Bot Token and Channel Details
 load_dotenv()
 
-TOKEN = os.getenv('TOKEN')
-CHANNEL_ID = os.getenv('CHANNEL_ID')
-CHANNEL_USERNAME = os.getenv('CHANNEL_USERNAME')
-WEBHOOK_URL = os.getenv('WEBHOOK_URL')
+TOKEN = os.getenv('7530666510:AAEw5CrvsxSiR_MrNroCzrP4uedpunkkVHE')
+CHANNEL_ID = os.getenv('-1002558977200')
+CHANNEL_USERNAME = os.getenv('Don8879_bot')
+WEBHOOK_URL = os.getenv('https://magnetbots-p04pgbe6.b4a.run')
 TAMILMV_URL = os.getenv('TAMILMV_URL', 'https://www.1tamilmv.fi')
 
 bot = telebot.TeleBot(TOKEN)
